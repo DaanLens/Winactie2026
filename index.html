@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<title>LENS AI · Winactie</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet" />
+</head>
+<body>
+<header><div class="wrap bar"><a href="./index.html"><img class="logo" src="./logo-kleur.svg" alt="LENS AI" /></a><a href="./scorebord.html">Scorebord →</a></div></header>
+<main>
+  <div class="block"><div class="wrap">
+    <span class="eyebrow">Winactie</span>
+    <h1>Sla raak. Scoor <span class="accent">punten.</span></h1>
+    <p class="lead">Sla de ballen in de emmers en kom op het scorebord. Je speelt één keer.</p>
+    <ul class="prizes">
+      <li><b>Top 3:</b> een gratis AI-masterclass van een uur</li>
+      <li><b>Boven de 50 punten:</b> €100 korting op een AI-training voor je team (excl. btw)</li>
+    </ul>
+  </div></div>
+
+  <div class="block"><div class="wrap">
+    <div id="uitleg">
+      <span class="eyebrow">Zo werkt het</span>
+      <ol class="steps">
+        <li><b>1</b><span>Schrijf je hieronder in.</span></li>
+        <li><b>2</b><span>Sla de ballen in de emmers.</span></li>
+        <li><b>3</b><span>Vul je score in met de code die je krijgt bij de emmers.</span></li>
+      </ol>
+    </div>
+
+    <div class="card" id="stap-inschrijven">
+      <h2>Doe mee</h2>
+      <form id="form-inschrijven" novalidate>
+        <label class="field"><span>Voornaam</span><input type="text" name="voornaam" autocomplete="given-name" maxlength="30" required /></label>
+        <label class="field"><span>Telefoonnummer</span><input type="tel" name="telefoon" autocomplete="tel" required /></label>
+        <label class="field"><span>Zakelijk e-mailadres</span><input type="email" name="email" autocomplete="email" required /></label>
+        <label class="check"><input type="checkbox" name="voorwaarden" /><span>Ik ga akkoord met de <a href="./voorwaarden.html">actievoorwaarden</a> en de <a href="./privacy.html">privacyverklaring</a>.</span></label>
+        <label class="check"><input type="checkbox" name="contact" /><span>LENS AI mag me bellen en mailen over deze actie en over AI-trainingen.</span></label>
+        <p class="error" id="fout-inschrijven" role="alert" hidden></p>
+        <button class="btn btn-primary btn-block" type="submit">Schrijf me in →</button>
+      </form>
+    </div>
+
+    <div class="card" id="stap-score" hidden>
+      <span class="eyebrow">Je staat ingeschreven</span>
+      <h2 id="groet"></h2>
+      <p class="small">Sla eerst je ballen. Vul daarna hier je score in. Dit kan één keer.</p>
+      <form id="form-score" novalidate>
+        <label class="field"><span>Je score</span><input class="score-input" type="number" id="score" name="score" inputmode="numeric" min="0" step="1" required /></label>
+        <label class="field"><span>Code van de stand</span><input type="text" name="code" inputmode="numeric" autocomplete="off" required /></label>
+        <p class="error" id="fout-score" role="alert" hidden></p>
+        <button class="btn btn-primary btn-block" type="submit">Zet me op het scorebord →</button>
+      </form>
+    </div>
+
+    <div class="card" id="stap-klaar" hidden>
+      <span class="eyebrow">Je score</span>
+      <h2 id="klaar-naam"></h2>
+      <p class="result-score" id="klaar-score"></p>
+      <p id="klaar-plek"></p>
+      <ul class="prizes">
+        <li id="klaar-top3" hidden>Je staat in de top 3. Blijf je daar, dan win je de AI-masterclass.</li>
+        <li id="klaar-korting" hidden>Je scoort boven de 50 en wint €100 korting op een AI-training voor je team.</li>
+      </ul>
+      <p class="small">We nemen na het toernooi contact met je op.</p>
+    </div>
+  </div></div>
+
+  <div class="block dark"><div class="wrap">
+    <span class="eyebrow">Live</span>
+    <h2>Wie staat er <span class="accent">bovenaan?</span></h2>
+    <p class="small" id="top-leeg">Nog geen scores. Jij kunt de eerste zijn.</p>
+    <ol class="top" id="top"></ol>
+  </div></div>
+</main>
+<footer><div class="wrap">LENS AI · Rotterdam · lens-ai.nl · <a href="./voorwaarden.html">Actievoorwaarden</a> · <a href="./privacy.html">Privacy</a></div></footer>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

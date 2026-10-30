@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<title>LENS AI · Beheer</title>
+<meta name="robots" content="noindex" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet" />
+</head>
+<body>
+<header><div class="wrap wrap-wide bar"><img class="logo" src="./logo-kleur.svg" alt="LENS AI" /><a href="./scorebord.html">Scorebord →</a></div></header>
+<main class="block"><div class="wrap wrap-wide">
+  <div id="login" class="card" style="max-width:420px">
+    <h2>Beheer</h2>
+    <form id="form-login">
+      <label class="field"><span>Beheercode</span><input type="password" id="beheercode" autocomplete="off" required /></label>
+      <p class="error" id="fout-login" role="alert" hidden></p>
+      <button class="btn btn-primary btn-block" type="submit">Open beheer →</button>
+    </form>
+  </div>
+
+  <div id="paneel" hidden>
+    <h2>Instellingen</h2>
+    <form class="card" id="form-instellingen" style="margin-top:14px">
+      <div class="settings">
+        <label class="field"><span>Standcode</span><input type="text" id="standcode" required /></label>
+        <label class="field"><span>Maximale score</span><input type="number" id="maxscore" min="1" step="1" required /></label>
+        <label class="field"><span>Start (leeg is open)</span><input type="datetime-local" id="start" /></label>
+        <label class="field"><span>Einde (leeg is open)</span><input type="datetime-local" id="eind" /></label>
+      </div>
+      <div class="row"><button class="btn btn-primary" type="submit">Opslaan</button><span class="small" id="opgeslagen" hidden>✓ Opgeslagen</span></div>
+    </form>
+
+    <div class="row" style="margin-top:32px"><h2 style="flex:1">Deelnemers</h2><span class="small" id="aantal"></span><button class="btn btn-ghost" id="ververs">Ververs</button><button class="btn btn-ghost" id="export">Download CSV</button></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Plek</th><th>Voornaam</th><th>Score</th><th>Prijs</th><th>Telefoon</th><th>E-mail</th><th>Tijd</th><th></th></tr></thead>
+      <tbody id="rijen"></tbody>
+    </table></div>
+  </div>
+</div></main>
+<script type="module" src="/src/beheer.js"></script>
+</body>
+</html>
