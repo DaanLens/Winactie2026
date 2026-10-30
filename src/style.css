@@ -77,7 +77,8 @@ footer{padding:28px 0 44px;font-size:13px;color:var(--ink-muted)}
 
 /* Scorebord op groot scherm */
 .board{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:32px 0}
-.board-grid{display:grid;grid-template-columns:1fr 280px;gap:56px;align-items:center}
+.board .wrap-wide{max-width:1560px;width:100%}
+.board-grid{display:grid;grid-template-columns:1fr minmax(240px,26vw);gap:64px;align-items:center}
 .board .logo{height:72px;margin:0 0 28px -18px}
 .board h1{color:#fff}
 .board .top li{padding:clamp(10px,1.8vh,20px) 0}

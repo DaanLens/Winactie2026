@@ -58,7 +58,7 @@ function renderRows() {
     tr.append(actions)
     return tr
   }))
-  $('aantal').textContent = `${participants.length} inschrijvingen`
+  $('aantal').textContent = participants.length === 1 ? '1 inschrijving' : `${participants.length} inschrijvingen`
 }
 
 async function load() {
