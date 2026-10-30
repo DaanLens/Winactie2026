@@ -66,7 +66,6 @@ async function load() {
   participants = data.participants
   const s = data.settings
   $('standcode').value = s.stand_code
-  $('maxscore').value = s.max_score
   $('start').value = toLocal(s.starts_at)
   $('eind').value = toLocal(s.ends_at)
   renderRows()
@@ -93,7 +92,6 @@ $('form-instellingen').addEventListener('submit', async (e) => {
     p_starts: fromLocal($('start').value),
     p_ends: fromLocal($('eind').value),
     p_stand_code: $('standcode').value,
-    p_max_score: Number($('maxscore').value),
   })
   $('opgeslagen').hidden = false
   setTimeout(() => { $('opgeslagen').hidden = true }, 2000)

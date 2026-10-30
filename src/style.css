@@ -47,7 +47,15 @@ h3{font-family:var(--font-display);font-weight:700;font-size:20px;line-height:1.
 .check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:15px}
 .check input{width:20px;height:20px;margin-top:3px;flex:0 0 20px;accent-color:var(--blue)}
 .error{color:var(--danger);font-size:15px;font-weight:500;margin-top:14px}
-.field .score-input{font-family:var(--font-display);font-weight:800;font-size:40px;text-align:center}
+.ball{border:none;margin-top:18px}
+.ball legend{font-weight:600;font-size:15px;margin-bottom:6px}
+.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.choices input{position:absolute;opacity:0}
+.choices span{display:block;text-align:center;font-weight:600;padding:12px 0;background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);cursor:pointer}
+.choices input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+.choices input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-weight:600}
+.total b{font-family:var(--font-display);font-weight:800;font-size:40px;line-height:1}
 
 .btn{display:inline-block;font-family:var(--font-body);font-weight:600;font-size:17px;padding:13px 22px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s}
 .btn-primary{background:var(--blue);color:#fff}

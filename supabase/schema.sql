@@ -21,7 +21,6 @@ create table public.settings (
   starts_at timestamptz,
   ends_at timestamptz,
   stand_code text not null,
-  max_score integer not null default 100,
   admin_hash text not null
 );
 
@@ -60,8 +59,7 @@ language sql stable security definer set search_path = '' as $$
     'first_name', p.first_name,
     'score', p.score,
     'rank', case when p.finished_at is not null then public._rank(p.id) end,
-    'discount', p.score > 50,
-    'max_score', (select max_score from public.settings where id = 1)
+    'discount', p.score > 50
   )
   from public.participants p where p.id = p_id;
 $$;
@@ -187,7 +185,8 @@ begin
     update public.participants set code_fails = code_fails + 1 where id = v_p.id;
     return jsonb_build_object('error', 'foute_code');
   end if;
-  if p_score is null or p_score < 0 or p_score > v_cfg.max_score then
+  -- Alle totalen die mogelijk zijn met 3 ballen en emmers van 10, 30 en 50 punten.
+  if p_score is null or not p_score = any (array[0,10,20,30,40,50,60,70,80,90,100,110,130,150]) then
     raise exception 'ongeldige_score';
   end if;
 
@@ -221,7 +220,7 @@ begin
   perform public._check_admin(p_code);
   return jsonb_build_object(
     'settings', (select jsonb_build_object(
-      'starts_at', starts_at, 'ends_at', ends_at, 'stand_code', stand_code, 'max_score', max_score
+      'starts_at', starts_at, 'ends_at', ends_at, 'stand_code', stand_code
     ) from public.settings where id = 1),
     'participants', coalesce((
       select jsonb_agg(to_jsonb(r) order by r.finished_at is null, r.hidden, r.score desc, r.finished_at)
@@ -261,13 +260,13 @@ begin
 end $$;
 
 create function public.admin_set_settings(
-  p_code text, p_starts timestamptz, p_ends timestamptz, p_stand_code text, p_max_score integer
+  p_code text, p_starts timestamptz, p_ends timestamptz, p_stand_code text
 ) returns void
 language plpgsql security definer set search_path = '' as $$
 begin
   perform public._check_admin(p_code);
   update public.settings
-  set starts_at = p_starts, ends_at = p_ends, stand_code = btrim(p_stand_code), max_score = p_max_score
+  set starts_at = p_starts, ends_at = p_ends, stand_code = btrim(p_stand_code)
   where id = 1;
 end $$;
 
@@ -282,5 +281,5 @@ grant execute on function
   public.admin_set_score(text, uuid, integer),
   public.admin_set_hidden(text, uuid, boolean),
   public.admin_delete(text, uuid),
-  public.admin_set_settings(text, timestamptz, timestamptz, text, integer)
+  public.admin_set_settings(text, timestamptz, timestamptz, text)
 to anon;

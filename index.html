@@ -15,7 +15,7 @@
   <div class="block"><div class="wrap">
     <span class="eyebrow">Winactie</span>
     <h1>Sla raak. Scoor <span class="accent">punten.</span></h1>
-    <p class="lead">Sla de ballen in de emmers en kom op het scorebord. Je speelt één keer.</p>
+    <p class="lead">Je krijgt 3 ballen. De buitenste emmer is 10 punten waard, de middelste 30 en de binnenste 50. Je speelt één keer.</p>
     <ul class="prizes">
       <li><b>Top 3:</b> een gratis AI-masterclass van een uur</li>
       <li><b>Boven de 50 punten:</b> €100 korting op een AI-training voor je team (excl. btw)</li>
@@ -27,8 +27,8 @@
       <span class="eyebrow">Zo werkt het</span>
       <ol class="steps">
         <li><b>1</b><span>Schrijf je hieronder in.</span></li>
-        <li><b>2</b><span>Sla de ballen in de emmers.</span></li>
-        <li><b>3</b><span>Vul je score in met de code die je krijgt bij de emmers.</span></li>
+        <li><b>2</b><span>Sla je 3 ballen in de emmers.</span></li>
+        <li><b>3</b><span>Vul per bal in wat je raakte, met de code die je krijgt bij de emmers.</span></li>
       </ol>
     </div>
 
@@ -48,9 +48,12 @@
     <div class="card" id="stap-score" hidden>
       <span class="eyebrow">Je staat ingeschreven</span>
       <h2 id="groet"></h2>
-      <p class="small">Sla eerst je ballen. Vul daarna hier je score in. Dit kan één keer.</p>
+      <p class="small">Sla eerst je 3 ballen. Vul daarna hier per bal in wat je raakte. Dit kan één keer.</p>
       <form id="form-score" novalidate>
-        <label class="field"><span>Je score</span><input class="score-input" type="number" id="score" name="score" inputmode="numeric" min="0" step="1" required /></label>
+        <fieldset class="ball"><legend>Bal 1</legend><div class="choices"><label><input type="radio" name="bal1" value="0" /><span>Mis</span></label><label><input type="radio" name="bal1" value="10" /><span>10</span></label><label><input type="radio" name="bal1" value="30" /><span>30</span></label><label><input type="radio" name="bal1" value="50" /><span>50</span></label></div></fieldset>
+        <fieldset class="ball"><legend>Bal 2</legend><div class="choices"><label><input type="radio" name="bal2" value="0" /><span>Mis</span></label><label><input type="radio" name="bal2" value="10" /><span>10</span></label><label><input type="radio" name="bal2" value="30" /><span>30</span></label><label><input type="radio" name="bal2" value="50" /><span>50</span></label></div></fieldset>
+        <fieldset class="ball"><legend>Bal 3</legend><div class="choices"><label><input type="radio" name="bal3" value="0" /><span>Mis</span></label><label><input type="radio" name="bal3" value="10" /><span>10</span></label><label><input type="radio" name="bal3" value="30" /><span>30</span></label><label><input type="radio" name="bal3" value="50" /><span>50</span></label></div></fieldset>
+        <p class="total"><span>Je score</span><b id="totaal">0</b></p>
         <label class="field"><span>Code van de stand</span><input type="text" name="code" inputmode="numeric" autocomplete="off" required /></label>
         <p class="error" id="fout-score" role="alert" hidden></p>
         <button class="btn btn-primary btn-block" type="submit">Zet me op het scorebord →</button>

@@ -20,7 +20,6 @@ function show(step) {
 
 function showScoreStep(state) {
   $('groet').textContent = `Succes, ${state.first_name}.`
-  $('score').max = state.max_score
   show('stap-score')
 }
 
@@ -63,15 +62,22 @@ $('form-inschrijven').addEventListener('submit', (e) => {
   })
 })
 
+const ballValues = () => [...$('form-score').querySelectorAll('input[type=radio]:checked')].map((r) => Number(r.value))
+const ballTotal = () => ballValues().reduce((sum, v) => sum + v, 0)
+
+$('form-score').addEventListener('change', () => {
+  $('totaal').textContent = ballTotal()
+})
+
 $('form-score').addEventListener('submit', (e) => {
   e.preventDefault()
   const f = e.target
-  submitWith(f.querySelector('button'), $('fout-score'), async () => {
-    if (f.score.value.trim() === '') throw new Error('ongeldige_score')
+  submitWith(f.querySelector('button[type=submit]'), $('fout-score'), async () => {
+    if (ballValues().length < 3) throw new Error('ballen_missen')
     const res = await rpc('submit_score', {
       p_token: token,
       p_stand_code: f.code.value,
-      p_score: Number(f.score.value),
+      p_score: ballTotal(),
     })
     if (res.error) throw new Error(res.error)
     showResult(res)

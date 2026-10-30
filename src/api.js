@@ -25,7 +25,8 @@ const MESSAGES = {
   al_ingevuld: 'Je score staat er al in.',
   foute_code: 'Die code klopt niet. Vraag de code aan iemand van LENS AI.',
   te_vaak_fout: 'Te vaak een foute code. Vraag iemand van LENS AI om je score in te vullen.',
-  ongeldige_score: 'Deze score kan niet. Controleer het getal.',
+  ongeldige_score: 'Deze score kan niet. Controleer je ballen.',
+  ballen_missen: 'Vul voor alle drie de ballen in wat je raakte.',
   onbekend: 'We vinden je inschrijving niet meer. Vul je gegevens opnieuw in.',
   geen_toegang: 'Deze beheercode klopt niet.',
 }
